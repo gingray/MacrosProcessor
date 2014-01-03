@@ -4,6 +4,7 @@ MacrosProcessor
 Библиотекта, которая помогает мапить данные из нескольких файлов в один на основе макро подстановок.
 
 К примеру у тебя вот такая структура каталогов
+``` text
 test
 |-- 1\title.txt
 |-- 1\description.txt
@@ -14,14 +15,15 @@ test
 |-- 3\title.txt
 |-- 3\description.txt
 |-- 3\image.txt
+```
 
 есть шаблон вида
-
+``` text
 {title}
 {description}
 {image}
-
-<code>
+```
+``` csharp
 namespace SandBox
 {
     class Program
@@ -46,6 +48,5 @@ namespace SandBox
         }
     }
 }
-</code>
-
+```
 теперь в каждой директории будет создам файл result.txt где будет подставлен контент из указанных файлов.
