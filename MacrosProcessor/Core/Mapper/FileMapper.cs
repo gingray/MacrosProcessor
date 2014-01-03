@@ -11,8 +11,14 @@ namespace MacrosProcessor.Core.Mapper
     public class FileMapper : BaseMapper, IBaseDirectory
     {
         private readonly string _filename;
+
         public FileMapper(string filename, string name)
-            : base(name)
+            : this(filename, name, null)
+        {
+        }
+
+        public FileMapper(string filename, string name, Func<string, string> filter)
+            : base(name, filter)
         {
             _filename = filename;
             BaseDirectory = "";
@@ -20,7 +26,7 @@ namespace MacrosProcessor.Core.Mapper
 
         protected override string Map()
         {
-            string content = File.ReadAllText(Path.Combine(BaseDirectory,_filename));
+            string content = File.ReadAllText(Path.Combine(BaseDirectory, _filename));
             return content;
         }
 

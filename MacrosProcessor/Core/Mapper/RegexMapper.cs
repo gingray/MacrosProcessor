@@ -12,8 +12,14 @@ namespace MacrosProcessor.Core.Mapper
         private readonly string _content;
         private Regex _regex;
 
+
         public RegexMapper(string regexPattern, string content, string name)
-            : base(name)
+            : this(regexPattern, content, name, null)
+        {
+        }
+
+        public RegexMapper(string regexPattern, string content, string name, Func<string, string> filter)
+            : base(name, filter)
         {
             _regex = new Regex(regexPattern);
             _content = content;
