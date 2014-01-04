@@ -43,6 +43,7 @@
     <Compile Include="Core\Helper.cs" />
     <Compile Include="Core\Mapper\BaseMapper.cs" />
     <Compile Include="Core\Mapper\FileMapper.cs" />
+    <Compile Include="Core\Mapper\FileNameMapper.cs" />
     <Compile Include="Core\Mapper\MapCollection.cs" />
     <Compile Include="Core\Mapper\MapException.cs" />
     <Compile Include="Core\Mapper\RegexMapper.cs" />

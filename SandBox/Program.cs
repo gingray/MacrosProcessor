@@ -14,11 +14,11 @@ namespace SandBox
         static void Main(string[] args)
         {
             var mapCollection = new MapCollection();
-            var item = new FileMapper("title.txt", "title");
+            BaseMapper item = new FileMapper("title.txt", "title");
             mapCollection.Add(item);
             item = new FileMapper("description.txt", "description");
             mapCollection.Add(item);
-            item = new FileMapper("image.txt", "image");
+            item = new FileNameMapper("im*.txt", "image");
             mapCollection.Add(item);
             var action = new MapToFiles(File.ReadAllText("template.txt"), "test", mapCollection);
             action.FileMaping += ActionFileMaping;
