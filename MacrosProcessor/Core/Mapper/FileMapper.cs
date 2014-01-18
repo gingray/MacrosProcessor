@@ -8,6 +8,7 @@ using MacrosProcessor.Common;
 
 namespace MacrosProcessor.Core.Mapper
 {
+    [Serializable]
     public class FileMapper : BaseMapper, IBaseDirectory
     {
         private readonly string _filename;
@@ -28,11 +29,6 @@ namespace MacrosProcessor.Core.Mapper
         {
             string content = File.ReadAllText(Path.Combine(BaseDirectory, _filename));
             return content;
-        }
-
-        public override object Clone()
-        {
-            return new FileMapper(_filename, Name);
         }
 
         public string BaseDirectory { get; set; }

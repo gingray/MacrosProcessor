@@ -46,7 +46,7 @@
     <Compile Include="Core\Mapper\FileNameMapper.cs" />
     <Compile Include="Core\Mapper\MapCollection.cs" />
     <Compile Include="Core\Mapper\MapException.cs" />
-    <Compile Include="Core\Mapper\RegexMapper.cs" />
+    <Compile Include="Core\Mapper\RegexFileMapper.cs" />
     <Compile Include="Core\MapToFiles.cs" />
     <Compile Include="Core\Template.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

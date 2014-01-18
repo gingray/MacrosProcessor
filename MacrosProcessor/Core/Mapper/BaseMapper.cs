@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace MacrosProcessor.Core.Mapper
 {
+    [Serializable]
     public abstract class BaseMapper : ICloneable
     {
         protected BaseMapper(string name, Func<string, string> filter)
@@ -25,10 +26,51 @@ namespace MacrosProcessor.Core.Mapper
 
         private string GetValue()
         {
-            if (Filter != null)
-                return Filter(Map());
-            return Map();
+            try
+            {
+                if (Filter != null)
+                    return Filter(Map());
+                return Map();
+            }
+            catch (MapingException)
+            {
+                if (OnMapFailed != null)
+                {
+                    var args = new MapFailedEventArgs();
+                    OnMapFailed(this, args);
+                    if (args.Supress && args.Result != null)
+                    {
+                        return args.Result;
+                    }
+                }
+                throw;
+            }
+
         }
-        public abstract object Clone();
+
+        public event EventHandler<MapFailedEventArgs> OnMapFailed;
+
+        protected virtual void OnOnMapFailed(MapFailedEventArgs e)
+        {
+            EventHandler<MapFailedEventArgs> handler = OnMapFailed;
+            if (handler != null) handler(this, e);
+        }
+
+        public object Clone()
+        {
+            return Helper.Clone(this);
+        }
+    }
+
+    public class MapFailedEventArgs : EventArgs
+    {
+        public string Result { get; set; }
+        public bool Supress { get; set; }
+
+        public MapFailedEventArgs()
+        {
+            Supress = false;
+            Result = null;
+        }
     }
 }

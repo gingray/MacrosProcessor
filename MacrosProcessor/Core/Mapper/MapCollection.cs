@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace MacrosProcessor.Core.Mapper
 {
+    [Serializable]
     public class MapCollection : IEnumerable<BaseMapper>, IEqualityComparer<BaseMapper>, ICloneable
     {
         private readonly HashSet<BaseMapper> _collection;

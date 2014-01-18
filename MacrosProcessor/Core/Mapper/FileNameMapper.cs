@@ -8,6 +8,7 @@ using MacrosProcessor.Common;
 
 namespace MacrosProcessor.Core.Mapper
 {
+    [Serializable]
     public class FileNameMapper : BaseMapper, IBaseDirectory
     {
         private readonly string _filePattern;
@@ -29,11 +30,6 @@ namespace MacrosProcessor.Core.Mapper
             if (name != null)
                 return Path.GetFileName(name);
             throw new MapingException(string.Format("FileNameMapper {0} pattern not found",_filePattern));
-        }
-
-        public override object Clone()
-        {
-            return new FileNameMapper(_filePattern, Name, Filter);
         }
 
         public string BaseDirectory { get; set; }
